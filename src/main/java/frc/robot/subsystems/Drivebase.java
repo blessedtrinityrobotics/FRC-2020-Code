@@ -17,16 +17,17 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
+
 
 public class Drivebase extends SubsystemBase {
 
   // Starts Drive Train GB Motors
-  public WPI_TalonSRX leftMasterMotor   = new  WPI_TalonSRX(Constants.leftMasterMotorPort);
-  public WPI_TalonSRX leftSlaveMotor1   = new WPI_TalonSRX(Constants.leftSlaveMotor1Port);
-  public WPI_TalonSRX rightMasterMotor  = new WPI_TalonSRX(Constants.rightMasterMotorPort);
-  public WPI_TalonSRX rightSlaveMotor1  = new WPI_TalonSRX(Constants.rightSlaveMotor1Port);
+  public WPI_TalonFX leftMasterMotor   = new WPI_TalonFX(Constants.leftMasterMotorPort);
+  public WPI_TalonFX leftSlaveMotor    = new WPI_TalonFX(Constants.leftSlaveMotor1Port);
+  public WPI_TalonFX rightMasterMotor  = new WPI_TalonFX(Constants.rightMasterMotorPort);
+  public WPI_TalonFX rightSlaveMotor   = new WPI_TalonFX(Constants.rightSlaveMotor1Port);
 
   private final DifferentialDrive rDrive; 
   public DifferentialDriveOdometry driveOdometry;
@@ -46,15 +47,17 @@ public class Drivebase extends SubsystemBase {
     leftMasterMotor.config_kF(Constants.kSlot_Drive, Constants.kGains_Drive.kF, Constants.kTimeoutMs); // F Value
     leftMasterMotor.configMotionAcceleration(Constants.kDriveTrainAccel, Constants.kTimeoutMs); // Motion Magic Acceleration Value
     leftMasterMotor.configMotionCruiseVelocity(Constants.kDriveTrainVelocity, Constants.kTimeoutMs); // Motion Magic Velocity Value
-    leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PID_PRIMARY, Constants.kTimeoutMs); // Select Sensor (Encoder)
+    leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_PRIMARY, Constants.kTimeoutMs); // Select Sensor (Encoder)
     leftMasterMotor.setSensorPhase(true); // Reverse Direction of encoder
     leftMasterMotor.configOpenloopRamp(1, Constants.kTimeoutMs); // % Ramp - 1 sec to full throtle
     leftMasterMotor.setNeutralMode(NeutralMode.Coast); // Neutral Mode - Coast
-    leftSlaveMotor1.setNeutralMode(NeutralMode.Coast); // Neutral Mode - Coast
+    leftSlaveMotor.setNeutralMode(NeutralMode.Coast); // Neutral Mode - Coast
     leftMasterMotor.setInverted(true);
-    leftSlaveMotor1.setInverted(true);
+    leftSlaveMotor.setInverted(true);
     leftMasterMotor.configVoltageCompSaturation(Constants.operatingVoltage, Constants.kTimeoutMs);
+    leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_PRIMARY, Constants.kTimeoutMs);
     
+
 
     // Configure Right GB Motors
     rightMasterMotor.selectProfileSlot(Constants.kSlot_Drive, Constants.PID_PRIMARY); // Profile Slot for PID Values
@@ -64,13 +67,13 @@ public class Drivebase extends SubsystemBase {
     rightMasterMotor.config_kF(Constants.kSlot_Drive, Constants.kGains_Drive.kF, Constants.kTimeoutMs); // F Value
     rightMasterMotor.configMotionAcceleration(Constants.kDriveTrainAccel, Constants.kTimeoutMs); // Motion Magic Acceleration Value
     rightMasterMotor.configMotionCruiseVelocity(Constants.kDriveTrainVelocity, Constants.kTimeoutMs); // Motion Magic Velocity Value
-    rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, Constants.PID_PRIMARY, Constants.kTimeoutMs);// Select Sensor (Encoder)
-    rightMasterMotor.setSensorPhase(false); // !Reverse Direction of encoder
+    rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_PRIMARY, Constants.kTimeoutMs); // Select Sensor (Encoder)
+    rightMasterMotor.setSensorPhase(false); // Do not Reverse Direction of encoder
     rightMasterMotor.configOpenloopRamp(1, Constants.kTimeoutMs); // % Ramp - 1 sec to full throtle
     rightMasterMotor.setNeutralMode(NeutralMode.Coast); // Neutral Mode - Coast
-    rightSlaveMotor1.setNeutralMode(NeutralMode.Coast); // Neutral Mode - Coast
+    rightSlaveMotor.setNeutralMode(NeutralMode.Coast); // Neutral Mode - Coast
     rightMasterMotor.setInverted(false);
-    rightSlaveMotor1.setInverted(false);
+    rightSlaveMotor.setInverted(false);
     rightMasterMotor.configVoltageCompSaturation(Constants.operatingVoltage, Constants.kTimeoutMs);
 
 
@@ -135,7 +138,7 @@ public class Drivebase extends SubsystemBase {
    */ 
   public void setLeftMotors(double speed) {
     leftMasterMotor.set(ControlMode.PercentOutput, speed);
-    leftSlaveMotor1.follow(leftMasterMotor);
+    leftSlaveMotor.follow(leftMasterMotor);
   }
 
   /**
@@ -145,7 +148,7 @@ public class Drivebase extends SubsystemBase {
    */
   public void setRightMotors(double speed) {
     rightMasterMotor.set(ControlMode.PercentOutput, speed);
-    rightSlaveMotor1.follow(rightMasterMotor);
+    rightSlaveMotor.follow(rightMasterMotor);
   }
 
   /**
@@ -157,9 +160,9 @@ public class Drivebase extends SubsystemBase {
     double encoderTarget;
     encoderTarget = distance * Constants.CPR;
     leftMasterMotor.set(ControlMode.MotionMagic, -encoderTarget);
-    leftSlaveMotor1.follow(leftMasterMotor);
+    leftSlaveMotor.follow(leftMasterMotor);
     rightMasterMotor.set(ControlMode.MotionMagic, encoderTarget);
-    rightSlaveMotor1.follow(rightMasterMotor);
+    rightSlaveMotor.follow(rightMasterMotor);
   }
 
   /**
@@ -219,8 +222,8 @@ public class Drivebase extends SubsystemBase {
     rightMasterMotor.enableVoltageCompensation(true);
     leftMasterMotor.set(leftVolts/Constants.operatingVoltage);
     rightMasterMotor.set(rightVolts/Constants.operatingVoltage);
-    leftSlaveMotor1.follow(leftMasterMotor);
-    rightSlaveMotor1.follow(rightMasterMotor);
+    leftSlaveMotor.follow(leftMasterMotor);
+    rightSlaveMotor.follow(rightMasterMotor);
   }
 
 
@@ -264,9 +267,9 @@ public class Drivebase extends SubsystemBase {
     double turnCommand = (error * kP) + (integral * kI) + (derivative * kD);
     previousError = error;
     leftMasterMotor.set(ControlMode.PercentOutput, (maxSpeed - turnCommand));
-    leftSlaveMotor1.follow(leftMasterMotor);
+    leftSlaveMotor.follow(leftMasterMotor);
     rightMasterMotor.set(ControlMode.PercentOutput, (maxSpeed + turnCommand));
-    rightSlaveMotor1.follow(rightMasterMotor);
+    rightSlaveMotor.follow(rightMasterMotor);
 
   
 

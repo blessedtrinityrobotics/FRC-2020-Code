@@ -28,6 +28,8 @@ public final class Constants {
     // Right Drive Train GB Motors
     public static final int  rightMasterMotorPort    = 1;
     public static final int  rightSlaveMotor1Port    = 5;
+    // Control Panel Motor
+    public static final int controlPanelMotorPort    = 0;
   //End of Motor Ports
 
   // Pigeon IMU
@@ -129,5 +131,6 @@ public final class Constants {
   public final static int PID_TURN    = 1;
   /* ---- Named slots, used to clarify code ---- */
   public final static int kSlot_Drive = 0;
+
 
 }

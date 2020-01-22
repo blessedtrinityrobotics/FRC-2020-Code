@@ -111,6 +111,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
+/*
   public Command getAutonomousCommand(Trajectory trajectory) {
     RamseteCommand ramseteCommand = new RamseteCommand(
       trajectory,
@@ -129,8 +130,49 @@ public class RobotContainer {
     
 
 
-  return ramseteCommand.andThen(() -> drivetrain.setDriveVolts(0, 0)).andThen(() -> drivetrain.setLeftMotors(1.0));    
+  return ramseteCommand.andThen(() -> drivetrain.setDriveVolts(0, 0));    
   }
+  */
+
+  //public Command one(){
+    // RamseteCommand ramseteCommand = new RamseteCommand(
+    //   // get balls under trench trajectory,
+    //   drivetrain::getPose, 
+    //   new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), 
+    //   new SimpleMotorFeedforward(Constants.ksVolts, 
+    //                              Constants.kvVoltSecondsPerMeter, 
+    //                              Constants.kaVoltSecondsSquaredPerMeter),
+    //   Constants.kDriveKinematics, 
+    //   drivetrain::getWheelSpeeds, 
+    //   new PIDController(Constants.kPDriveVel, 0, 0), 
+    //   new PIDController(Constants.kPDriveVel, 0, 0), 
+    //   drivetrain::setDriveVolts,
+    //   drivetrain
+    // );
+
+    // Drive drive1 = new Drive(drivetrain);
+
+    // return drive1.andThen(ramseteCommand);
+
+    
+
+    // drive forwrd 2 secs
+    // shooter
+    // turn 180
+    // initiate ramsete command
+    
+
+      // turn 180
+
+      // ramsete go back
+      // shooter
+
+      //stop
+
+
+  
+
+ // }
 
   
 }

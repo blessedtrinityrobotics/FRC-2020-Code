@@ -24,10 +24,11 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 public class Drivebase extends SubsystemBase {
 
   // Starts Drive Train GB Motors
-  public WPI_TalonFX leftMasterMotor   = new WPI_TalonFX(Constants.leftMasterMotorPort);
-  public WPI_TalonFX leftSlaveMotor    = new WPI_TalonFX(Constants.leftSlaveMotor1Port);
-  public WPI_TalonFX rightMasterMotor  = new WPI_TalonFX(Constants.rightMasterMotorPort);
-  public WPI_TalonFX rightSlaveMotor   = new WPI_TalonFX(Constants.rightSlaveMotor1Port);
+  public static WPI_TalonFX leftMasterMotor   = new WPI_TalonFX(Constants.leftMasterMotorPort);
+  public static WPI_TalonFX leftSlaveMotor    = new WPI_TalonFX(Constants.leftSlaveMotor1Port);
+  public static WPI_TalonFX rightMasterMotor  = new WPI_TalonFX(Constants.rightMasterMotorPort);
+  public static WPI_TalonFX rightSlaveMotor   = new WPI_TalonFX(Constants.rightSlaveMotor1Port);
+
 
   private final DifferentialDrive rDrive; 
   public DifferentialDriveOdometry driveOdometry;
@@ -273,6 +274,15 @@ public class Drivebase extends SubsystemBase {
 
   
 
+  }
+
+  public static double getLeftEncoder(){
+    return leftMasterMotor.getSelectedSensorPosition(); 
+  }
+
+
+  public static double getRightEncoder(){
+    return rightMasterMotor.getSelectedSensorPosition(); 
   }
 
 

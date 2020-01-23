@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.controller.PIDController;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Drivebase drivetrain = new Drivebase();
+  public final Drivebase drivetrain = new Drivebase();
 
   private final Drive drive = new Drive(drivetrain);
 

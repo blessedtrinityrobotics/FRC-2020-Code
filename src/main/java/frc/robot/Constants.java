@@ -23,11 +23,11 @@ public final class Constants {
 
     // Motor Ports
     // Left Drive Train GB Motors
-    public static final int  leftMasterMotorPort     = 3;
-    public static final int  leftSlaveMotor1Port     = 4;
+    public static final int  leftMasterMotorPort     = 5;
+    public static final int  leftSlaveMotor1Port     = 8;
     // Right Drive Train GB Motors
-    public static final int  rightMasterMotorPort    = 1;
-    public static final int  rightSlaveMotor1Port    = 5;
+    public static final int  rightMasterMotorPort    = 7;
+    public static final int  rightSlaveMotor1Port    = 4;
     // Control Panel Motor
     public static final int controlPanelMotorPort    = 0;
   //End of Motor Ports
@@ -93,7 +93,7 @@ public final class Constants {
   public static final double kMaxAccelerationMetersPerSecondSquared = 0.0;
   public static final double kRamseteB                              = 2.0;
   public static final double kRamseteZeta                           = 0.7;
-
+/*
   public static final DifferentialDriveKinematics kDriveKinematics  = 
         new DifferentialDriveKinematics(kTrackwidthMeters);
   
@@ -108,7 +108,7 @@ public final class Constants {
                              kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(kDriveKinematics)
             .addConstraint(autoVoltageConstraint);
-
+*/
 
 
   /**

@@ -14,15 +14,23 @@ import frc.robot.RobotContainer;
 
 public class Drive extends CommandBase {
 
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  
+  //public RobotContainer robotContainer = new RobotContainer();
+  //@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  public double rightTrigger;
+  public double leftTrigger;
+  public double leftStickX;
+  public double rightStickY;
   private final Drivebase drivetrain;
-  private final RobotContainer robotContainer;
 
-
-  public Drive(Drivebase subsystem) {
+  public Drive(double rT, double lT, double lSX, double rSY, Drivebase subsystem) {
+    rightTrigger = rT;
+    leftTrigger = lT;
+    leftStickX = lSX;
+    rightStickY = rSY;
     drivetrain = subsystem;
     addRequirements(drivetrain);
-    robotContainer = new RobotContainer();
+    
   }
 
   // Called when the command is initially scheduled.
@@ -35,11 +43,7 @@ public class Drive extends CommandBase {
   public void execute() {
 
     //double leftStickY = robotContainer.getDriverRawAxis(Constants.leftStickY);
-    double rightStickY = robotContainer.getDriverRawAxis(Constants.rightStickY);
-    double leftStickX = -robotContainer.getDriverRawAxis(Constants.leftStickX);
-    //double rightStickX = robotContainer.getDriverRawAxis(Constants.rightStickX);
-    double leftTrigger = robotContainer.getDriverRawAxis(Constants.leftTriggerAxis);
-    double rightTrigger = robotContainer.getDriverRawAxis(Constants.rightTriggerAxis);
+    
     
   /*
     // Tank Drive Options

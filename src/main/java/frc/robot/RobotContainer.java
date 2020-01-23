@@ -28,9 +28,9 @@ import edu.wpi.first.wpilibj.controller.PIDController;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  public final Drivebase drivetrain = new Drivebase();
+  Drivebase drivetrain = new Drivebase();
 
-  private final Drive drive = new Drive(drivetrain);
+  //private final Drive drive = new Drive(drivetrain);
 
   // Starts Xbox Controllers
   public XboxController driverController = new XboxController(Constants.driveControllerPort);
@@ -67,8 +67,12 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    configureButtonBindings();
-
+    drivetrain.setDefaultCommand(new Drive(getDriverRawAxis(Constants.rightTriggerAxis),
+                                           getDriverRawAxis(Constants.leftTriggerAxis),
+                                           getDriverRawAxis(Constants.leftStickX),
+                                           getDriverRawAxis(Constants.rightStickY),
+                                           drivetrain                              
+    ));
   }
 
   /**
@@ -79,7 +83,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
 
-    drivetrain.setDefaultCommand(new Drive(drivetrain));
+    
 
     // ADD COMMANDS HERE
 

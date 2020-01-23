@@ -30,16 +30,16 @@ public class Drivebase extends SubsystemBase {
   public static WPI_TalonFX rightSlaveMotor   = new WPI_TalonFX(Constants.rightSlaveMotor1Port);
 
 
-  private final DifferentialDrive rDrive; 
-  public DifferentialDriveOdometry driveOdometry;
-  public Pose2d pose = new Pose2d();
+  //private final DifferentialDrive rDrive; 
+  //public DifferentialDriveOdometry driveOdometry;
+  //public Pose2d pose = new Pose2d();
 
   public PigeonIMU gyro;
 
   double [] ypr  = new double[3];
 
   public Drivebase() {
-
+/*
     // Configure Left GB Motors
     leftMasterMotor.selectProfileSlot(Constants.kSlot_Drive, Constants.PID_PRIMARY); // Profile Slot for PID Values
     leftMasterMotor.config_kP(Constants.kSlot_Drive, Constants.kGains_Drive.kP, Constants.kTimeoutMs); // P Value
@@ -76,30 +76,32 @@ public class Drivebase extends SubsystemBase {
     rightMasterMotor.setInverted(false);
     rightSlaveMotor.setInverted(false);
     rightMasterMotor.configVoltageCompSaturation(Constants.operatingVoltage, Constants.kTimeoutMs);
+*/
 
+    //rDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
 
-    rDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
+    //gyro = new PigeonIMU(Constants.pigeonIMUPort);
 
-    gyro = new PigeonIMU(Constants.pigeonIMUPort);
-
-    driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getYaw()));
+    //driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getYaw()));
 
   }
-
+/*
   @Override
   public void periodic() {
     driveOdometry.update(Rotation2d.fromDegrees(getYaw()), getWheelDistanceMeters(leftMasterMotor.getSelectedSensorPosition()), getWheelDistanceMeters(rightMasterMotor.getSelectedSensorPosition()));
   }
+*/
 
   /**
    * 
    * @return The Pose
    *
    */
+/*
   public Pose2d getPose(){
     return driveOdometry.getPoseMeters();
   }
-
+*/
 
   /**
    * 
@@ -180,12 +182,13 @@ public class Drivebase extends SubsystemBase {
    * @param angle Angle to reset to
    * 
    */
+  /*
   public void resetYaw(double angle){
     gyro.setYaw(angle);
     gyro.setFusedHeading(angle);
 
   }
-
+*/
 
   /**
    * 
@@ -205,11 +208,12 @@ public class Drivebase extends SubsystemBase {
    * @return Yaw heading on gyro
    * 
    */
+  /*
   public double getYaw(){
     gyro.getYawPitchRoll(ypr);
     return ypr[0];
   }
-
+*/
 
   /**
    * Drive with volts and enable voltage compensation
@@ -247,7 +251,7 @@ public class Drivebase extends SubsystemBase {
    * @param direction Direction to drive straight; 1.0 is Forward, -1.0 is backwards
    *  
    */
-  
+  /*
   public void driveToAngle(double angle, double direction){
     gyro.getYawPitchRoll(ypr);
     // Yaw = ypr[0]
@@ -275,13 +279,13 @@ public class Drivebase extends SubsystemBase {
   
 
   }
-
-  public static double getLeftEncoder(){
+*/
+  public double getLeftEncoder(){
     return leftMasterMotor.getSelectedSensorPosition(); 
   }
 
 
-  public static double getRightEncoder(){
+  public double getRightEncoder(){
     return rightMasterMotor.getSelectedSensorPosition(); 
   }
 

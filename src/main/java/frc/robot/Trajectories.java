@@ -11,8 +11,12 @@ import java.util.List;
 
 public class Trajectories {
 
+
+
     // X direction -> Forward is positive
     // Y direction -> Left is positive
+
+    /*
     public static final Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         new Pose2d(0, 0, new Rotation2d(0)) , 
         List.of(
@@ -44,6 +48,6 @@ public class Trajectories {
         new Pose2d(4, -3.5, Rotation2d.fromDegrees(-90) ), 
         Constants.defaultConfig
     );
-
+*/
 
 }

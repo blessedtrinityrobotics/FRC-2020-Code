@@ -111,8 +111,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
-    SmartDashboard.putNumber("Left Master Encoder", Drivebase.getLeftEncoder());
-    SmartDashboard.putNumber("Right Master Encoder", Drivebase.getLeftEncoder());
+    SmartDashboard.putNumber("Left Master Encoder", m_robotContainer.drivetrain.getLeftEncoder());
+    SmartDashboard.putNumber("Right Master Encoder", m_robotContainer.drivetrain.getLeftEncoder());
 //
   }
 

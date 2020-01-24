@@ -67,11 +67,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    drivetrain.setDefaultCommand(new Drive(getDriverRawAxis(Constants.rightTriggerAxis),
-                                           getDriverRawAxis(Constants.leftTriggerAxis),
-                                           getDriverRawAxis(Constants.leftStickX),
-                                           getDriverRawAxis(Constants.rightStickY),
-                                           drivetrain                              
+    drivetrain.setDefaultCommand( new Drive(drivetrain));                           
     ));
   }
 

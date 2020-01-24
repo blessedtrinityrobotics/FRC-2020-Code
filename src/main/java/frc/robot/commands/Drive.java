@@ -25,9 +25,9 @@ public class Drive extends CommandBase {
   private final RobotContainer robotContainer;
 
 
-  public Drive(Drivebase subsystem, RobotContainer container) {
+  public Drive(Drivebase subsystem) {
     drivetrain = subsystem;
-    robotContainer = container;
+    
     addRequirements(drivetrain);
     
   }
@@ -42,8 +42,9 @@ public class Drive extends CommandBase {
   public void execute() {
 
     //double leftStickY = robotContainer.getDriverRawAxis(Constants.leftStickY);
-    
-    
+    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickY);
+    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickY);
+    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickY);
   /*
     // Tank Drive Options
       // Regular Tank Drive

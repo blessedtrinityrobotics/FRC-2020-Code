@@ -22,13 +22,12 @@ public class Drive extends CommandBase {
   public double leftStickX;
   public double rightStickY;
   private final Drivebase drivetrain;
+  private final RobotContainer robotContainer;
 
-  public Drive(double rT, double lT, double lSX, double rSY, Drivebase subsystem) {
-    rightTrigger = rT;
-    leftTrigger = lT;
-    leftStickX = lSX;
-    rightStickY = rSY;
+
+  public Drive(Drivebase subsystem, RobotContainer container) {
     drivetrain = subsystem;
+    robotContainer = container;
     addRequirements(drivetrain);
     
   }

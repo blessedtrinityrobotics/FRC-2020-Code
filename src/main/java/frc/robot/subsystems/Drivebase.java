@@ -39,15 +39,15 @@ public class Drivebase extends SubsystemBase {
   double [] ypr  = new double[3];
 
   public Drivebase() {
-/*
+
     // Configure Left GB Motors
     leftMasterMotor.selectProfileSlot(Constants.kSlot_Drive, Constants.PID_PRIMARY); // Profile Slot for PID Values
     leftMasterMotor.config_kP(Constants.kSlot_Drive, Constants.kGains_Drive.kP, Constants.kTimeoutMs); // P Value
     leftMasterMotor.config_kI(Constants.kSlot_Drive, Constants.kGains_Drive.kI, Constants.kTimeoutMs); // I Value
     leftMasterMotor.config_kD(Constants.kSlot_Drive, Constants.kGains_Drive.kD, Constants.kTimeoutMs); // D Value
     leftMasterMotor.config_kF(Constants.kSlot_Drive, Constants.kGains_Drive.kF, Constants.kTimeoutMs); // F Value
-    leftMasterMotor.configMotionAcceleration(Constants.kDriveTrainAccel, Constants.kTimeoutMs); // Motion Magic Acceleration Value
-    leftMasterMotor.configMotionCruiseVelocity(Constants.kDriveTrainVelocity, Constants.kTimeoutMs); // Motion Magic Velocity Value
+    //leftMasterMotor.configMotionAcceleration(Constants.kDriveTrainAccel, Constants.kTimeoutMs); // Motion Magic Acceleration Value
+    //leftMasterMotor.configMotionCruiseVelocity(Constants.kDriveTrainVelocity, Constants.kTimeoutMs); // Motion Magic Velocity Value
     leftMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_PRIMARY, Constants.kTimeoutMs); // Select Sensor (Encoder)
     leftMasterMotor.setSensorPhase(true); // Reverse Direction of encoder
     leftMasterMotor.configOpenloopRamp(1, Constants.kTimeoutMs); // % Ramp - 1 sec to full throtle
@@ -66,8 +66,8 @@ public class Drivebase extends SubsystemBase {
     rightMasterMotor.config_kI(Constants.kSlot_Drive, Constants.kGains_Drive.kI, Constants.kTimeoutMs); // I Value
     rightMasterMotor.config_kD(Constants.kSlot_Drive, Constants.kGains_Drive.kD, Constants.kTimeoutMs); // D Value
     rightMasterMotor.config_kF(Constants.kSlot_Drive, Constants.kGains_Drive.kF, Constants.kTimeoutMs); // F Value
-    rightMasterMotor.configMotionAcceleration(Constants.kDriveTrainAccel, Constants.kTimeoutMs); // Motion Magic Acceleration Value
-    rightMasterMotor.configMotionCruiseVelocity(Constants.kDriveTrainVelocity, Constants.kTimeoutMs); // Motion Magic Velocity Value
+    //rightMasterMotor.configMotionAcceleration(Constants.kDriveTrainAccel, Constants.kTimeoutMs); // Motion Magic Acceleration Value
+    //rightMasterMotor.configMotionCruiseVelocity(Constants.kDriveTrainVelocity, Constants.kTimeoutMs); // Motion Magic Velocity Value
     rightMasterMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, Constants.PID_PRIMARY, Constants.kTimeoutMs); // Select Sensor (Encoder)
     rightMasterMotor.setSensorPhase(false); // Do not Reverse Direction of encoder
     rightMasterMotor.configOpenloopRamp(1, Constants.kTimeoutMs); // % Ramp - 1 sec to full throtle
@@ -76,7 +76,7 @@ public class Drivebase extends SubsystemBase {
     rightMasterMotor.setInverted(false);
     rightSlaveMotor.setInverted(false);
     rightMasterMotor.configVoltageCompSaturation(Constants.operatingVoltage, Constants.kTimeoutMs);
-*/
+
 
     //rDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
 
@@ -85,12 +85,12 @@ public class Drivebase extends SubsystemBase {
     //driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getYaw()));
 
   }
-/*
+
   @Override
   public void periodic() {
-    driveOdometry.update(Rotation2d.fromDegrees(getYaw()), getWheelDistanceMeters(leftMasterMotor.getSelectedSensorPosition()), getWheelDistanceMeters(rightMasterMotor.getSelectedSensorPosition()));
+    //driveOdometry.update(Rotation2d.fromDegrees(getYaw()), getWheelDistanceMeters(leftMasterMotor.getSelectedSensorPosition()), getWheelDistanceMeters(rightMasterMotor.getSelectedSensorPosition()));
   }
-*/
+
 
   /**
    * 

@@ -10,6 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Drivebase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class Drive extends CommandBase {
@@ -22,12 +23,11 @@ public class Drive extends CommandBase {
   public double leftStickX;
   public double rightStickY;
   private final Drivebase drivetrain;
-  private final RobotContainer robotContainer;
+  //private final RobotContainer robotContainer;
 
 
   public Drive(Drivebase subsystem) {
     drivetrain = subsystem;
-    
     addRequirements(drivetrain);
     
   }
@@ -42,9 +42,9 @@ public class Drive extends CommandBase {
   public void execute() {
 
     //double leftStickY = robotContainer.getDriverRawAxis(Constants.leftStickY);
-    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickY);
-    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickY);
-    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickY);
+    rightTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.rightTriggerAxis);
+    leftTrigger = Robot.m_robotContainer.getDriverRawAxis(Constants.leftTriggerAxis);
+    leftStickX = Robot.m_robotContainer.getDriverRawAxis(Constants.leftStickX);
   /*
     // Tank Drive Options
       // Regular Tank Drive

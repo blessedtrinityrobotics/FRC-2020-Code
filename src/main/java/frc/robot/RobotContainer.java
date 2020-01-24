@@ -68,7 +68,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     drivetrain.setDefaultCommand( new Drive(drivetrain));                           
-    ));
   }
 
   /**
@@ -92,7 +91,12 @@ public class RobotContainer {
    * @return Values of axis
    */
   public double getDriverRawAxis(int axis) {
-    return driverController.getRawAxis(axis);
+    //System.out.println("Left Stick X: " + driverController.getRawAxis(axis));
+    if( Math.abs(driverController.getRawAxis(axis)) < 0.01){
+      return 0;
+    } else {
+      return driverController.getRawAxis(axis);
+    } 
   }
 
   /**

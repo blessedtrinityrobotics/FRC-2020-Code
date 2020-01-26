@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
@@ -288,6 +289,26 @@ public class Drivebase extends SubsystemBase {
   public double getRightEncoder(){
     return rightMasterMotor.getSelectedSensorPosition(); 
   }
+
+
+  public void shooterRPM(double deltaX){
+    double sensorVelocity = (Constants.CPR * (  Math.sqrt(
+                                                    (2 * Constants.gInchSecondsSquared * Constants.outerPortHeightDelta) 
+                                                      + 
+                                                    ( (2 * Constants.gInchSecondsSquared * Constants.outerPortHeightDelta) 
+                                                      / 
+                                                      ( Math.pow( Math.tan(Math.toRadians(Constants.launchAngle) ), 2) ) )
+                                                  ) 
+                                                  / 
+                                                  ( 6 * Constants.shooterRadius )   
+                                                
+                                              )
+                            )
+                            /
+                            (600 * Constants.gearRatioShooter);
+    leftMasterMotor.set(ControlMode.Velocity, sensorVelocity, DemandType.Neutral, sensorVelocity);
+  }
+
 
 
 }

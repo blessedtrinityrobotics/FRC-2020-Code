@@ -31,9 +31,9 @@ public class Drivebase extends SubsystemBase {
   public static WPI_TalonFX rightSlaveMotor   = new WPI_TalonFX(Constants.rightSlaveMotor1Port);
 
 
-  //private final DifferentialDrive rDrive; 
-  //public DifferentialDriveOdometry driveOdometry;
-  //public Pose2d pose = new Pose2d();
+  private final DifferentialDrive rDrive; 
+  public DifferentialDriveOdometry driveOdometry;
+  public Pose2d pose = new Pose2d();
 
   public PigeonIMU gyro;
 
@@ -79,17 +79,17 @@ public class Drivebase extends SubsystemBase {
     rightMasterMotor.configVoltageCompSaturation(Constants.operatingVoltage, Constants.kTimeoutMs);
 
 
-    //rDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
+    rDrive = new DifferentialDrive(leftMasterMotor, rightMasterMotor);
 
-    //gyro = new PigeonIMU(Constants.pigeonIMUPort);
+    gyro = new PigeonIMU(Constants.pigeonIMUPort);
 
-    //driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getYaw()));
+    driveOdometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getYaw()));
 
   }
 
   @Override
   public void periodic() {
-    //driveOdometry.update(Rotation2d.fromDegrees(getYaw()), getWheelDistanceMeters(leftMasterMotor.getSelectedSensorPosition()), getWheelDistanceMeters(rightMasterMotor.getSelectedSensorPosition()));
+    driveOdometry.update(Rotation2d.fromDegrees(getYaw()), getWheelDistanceMeters(leftMasterMotor.getSelectedSensorPosition()), getWheelDistanceMeters(rightMasterMotor.getSelectedSensorPosition()));
   }
 
 
@@ -98,11 +98,11 @@ public class Drivebase extends SubsystemBase {
    * @return The Pose
    *
    */
-/*
+
   public Pose2d getPose(){
     return driveOdometry.getPoseMeters();
   }
-*/
+
 
   /**
    * 
@@ -183,13 +183,13 @@ public class Drivebase extends SubsystemBase {
    * @param angle Angle to reset to
    * 
    */
-  /*
+  
   public void resetYaw(double angle){
     gyro.setYaw(angle);
     gyro.setFusedHeading(angle);
 
   }
-*/
+
 
   /**
    * 
@@ -209,12 +209,12 @@ public class Drivebase extends SubsystemBase {
    * @return Yaw heading on gyro
    * 
    */
-  /*
+  
   public double getYaw(){
     gyro.getYawPitchRoll(ypr);
     return ypr[0];
   }
-*/
+
 
   /**
    * Drive with volts and enable voltage compensation

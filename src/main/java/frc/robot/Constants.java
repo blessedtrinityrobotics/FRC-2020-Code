@@ -93,7 +93,7 @@ public final class Constants {
   public static final double kMaxAccelerationMetersPerSecondSquared = 0.0;
   public static final double kRamseteB                              = 2.0;
   public static final double kRamseteZeta                           = 0.7;
-/*
+
   public static final DifferentialDriveKinematics kDriveKinematics  = 
         new DifferentialDriveKinematics(kTrackwidthMeters);
   
@@ -108,7 +108,7 @@ public final class Constants {
                              kMaxAccelerationMetersPerSecondSquared)
             .setKinematics(kDriveKinematics)
             .addConstraint(autoVoltageConstraint);
-*/
+
 
 // Shooter Constants
 public static final double gInchSecondsSquared  = 389.09; // Gravity in inches per second per second (Positive as negative cancel out later)

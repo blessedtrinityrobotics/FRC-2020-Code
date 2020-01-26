@@ -115,28 +115,24 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-/*
-  public Command getAutonomousCommand(Trajectory trajectory) {
+
+  public Command generateRamseteCommand(Trajectory trajectory) {
     RamseteCommand ramseteCommand = new RamseteCommand(
       trajectory,
       drivetrain::getPose, 
       new RamseteController(Constants.kRamseteB, Constants.kRamseteZeta), 
-      new SimpleMotorFeedforward(Constants.ksVolts, 
-                                 Constants.kvVoltSecondsPerMeter, 
-                                 Constants.kaVoltSecondsSquaredPerMeter),
+      Constants.kDriveFF,
       Constants.kDriveKinematics, 
       drivetrain::getWheelSpeeds, 
       new PIDController(Constants.kPDriveVel, 0, 0), 
       new PIDController(Constants.kPDriveVel, 0, 0), 
       drivetrain::setDriveVolts,
       drivetrain
-  );
+    );
     
-
-
-  return ramseteCommand.andThen(() -> drivetrain.setDriveVolts(0, 0));    
+  return ramseteCommand;
   }
-  */
+  
 
   //public Command one(){
     // RamseteCommand ramseteCommand = new RamseteCommand(
